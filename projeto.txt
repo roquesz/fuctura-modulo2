@@ -1,0 +1,45 @@
+Controle de estoque
+
+Administradores
+ - Nome
+ - Login
+ - Senha
+ - Email
+ - Permissão
+
+Produto
+ - Nome
+ - Descrição
+ - Preço de compra
+ - Preço de Venda
+ - Qtde Estoque
+ - Imagem
+ - Vídeo
+ - Validade
+ - Fornecedor
+ - Qtde Acesso ao produto
+ - Lote
+
+Fornecedor
+ - Razão Social
+ - Nome Fantasia
+ - Endereço
+ - CNPJ
+ - Telefone
+ - Email
+
+Cliente
+ - Nome
+ - Endereço
+ - CPF/CNPJ
+ - Telefone
+ - Email
+ - Login
+ - Senha
+
+Vendas
+ - Clientes
+ - Produtos
+ - Valor do produto
+ - Qtde comprar
+ - Data da Compra
