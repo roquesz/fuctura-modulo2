@@ -1,0 +1,18 @@
+Sistema de concurso
+
+Concursos
+   - Aberto
+   - Em andamento
+   - Encerrada inscrição
+   	- Quantidade de vagas
+	- Cadastro de reserva
+
+Candidatos
+   - Pode se inscrever em vários concursos
+   - Geração boleto de pagamento PagSeguro
+   - Situação nos concursos
+   - Nota no concursos para classificação
+   - Foto
+   - Comprovante de inscrição
+
+Prova online
