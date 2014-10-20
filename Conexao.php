@@ -1,10 +1,4 @@
 <?php
-<<<<<<< HEAD
-	mysql_connect('localhost', 'root', '');
-	mysql_select_db('fuctura') or die(mysql_error());
-?>
-=======
-
 class Conexao
 {
     /**
@@ -38,4 +32,3 @@ class Conexao
     }
 
 }
->>>>>>> fe8b0ebad087a83e14a81a4bb1de113d70651d2e
