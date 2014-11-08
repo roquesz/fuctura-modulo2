@@ -70,19 +70,10 @@ class View
 	{
 		switch (strtoupper($this->tipo)) {
 		    case 'INT':
-		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/topo.inc.php");
-		        break;
-		    case 'HOME':
-		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/topoHome.inc.php");
-		        break;
-		    case 'POPUP':
-		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/topoPopup.inc.php");
-		        break;
-		   case 'XML':
-		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/topoPopup.inc.php");
+		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/topo.php");
 		        break;
 		    default:
-		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/topo.inc.php");
+		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/topo.php");
 		        break;
 		}
 	}
@@ -91,25 +82,16 @@ class View
 	{
 		switch (strtoupper($this->tipo)) {
 		    case 'INT':
-		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/rodape.inc.php");
-		        break;
-		    case 'HOME':
-		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/rodapeHome.inc.php");
-		        break;
-		    case 'POPUP':
-		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/rodapePopup.inc.php");
-		        break;
-		    case 'XML':
-		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/rodapePopup.inc.php");
+		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/rodape.php");
 		        break;
 		    default:
-		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/rodape.inc.php");
+		        include(CAMINHO_PORTAL."templates/" . TEMPLATE . "/rodape.php");
 		        break;
 		}
 	}
 	
 	public function mostrar() {
-	
+
 		if($this->data)
 			extract($this->data);
 		

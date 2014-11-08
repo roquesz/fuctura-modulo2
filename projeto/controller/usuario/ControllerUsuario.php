@@ -36,6 +36,17 @@ class ControllerUsuario extends Controller
 	{
 		$this->usuarioHome($parametros);
 	}
+
+	public function soma($parametros)
+	{
+		$view = new View();
+		$resultado = $parametros[0] + $parametros[1];
+		$array = array();
+		$array['somatorio'] = $resultado;
+		$view->data = $array;
+		$view->carregar('usuario/login.html');
+		$view->mostrar();
+	}
 	
 	public function login($parametros = null)
 	{
@@ -43,10 +54,14 @@ class ControllerUsuario extends Controller
 		if(!$_SESSION['usuarioLogado']){
 			$view = new View();
 			$view->tipo = 'int';
+			$data = array();
+			$data['concursos'] = 'lista de concursos';
+			$data['parametros'] = $parametros;
+			$view->data = $data;
 			$view->carregar("usuario/login.html");
 			$view->mostrar();
 		}else{
-			$this->usuarioHome();
+			$this->usuarioHome();			
 		}		
 
 	}
@@ -76,6 +91,7 @@ class ControllerUsuario extends Controller
 			}
 		} else {
 			$data['result'] = false;
+			$data['concursos'] = 'lista de concursos';
 			$view = new View();
 			//$view->tipo = 'xml';
 			$view->data = $data;

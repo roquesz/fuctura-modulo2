@@ -1,7 +1,11 @@
+
 <section class="wrapper-login">
 	<h2>ACESSE SUA CONTA</h2>
 
         <form class="form-cadastro round" id="formLoginUsuario" action="<?php echo URL_PORTAL?>usuario/processalogin/" method="post">
+        	   <p>
+        	   	<?php echo $somatorio;?>
+        	   </p>
               <label>Login<br /> <input name="email" id="email" type="text" class="validate[required,custom[email]] input-form round"  /></label>
               <label>Senha<br /> <input type="password" name="senha" id="senha" class="validate[required] input-form round"  /></label>
               
