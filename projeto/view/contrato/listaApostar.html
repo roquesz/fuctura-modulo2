@@ -1,0 +1,56 @@
+<script type="text/javascript">
+
+	
+</script>
+
+<h1>Apostar Jogos</h1>
+<form id="form5" action="<?php echo URL_PORTAL;?>bolao/processarAposta/<?php echo $idBolao;?>" method="post">	
+
+	<h2><?php echo utf8_encode($bolao[0]['bol_nome'])?></h2>
+	
+	<table width="400px" cellpadding="4" cellspacing="20">
+		<tr>
+			<td colspan="4" align="center"><input type="button" class="btPalpite" value="SALVAR PALPITES" onClick="javascript:document.getElementById('form5').submit();"></td>
+		</tr>
+	<?php
+		for($i=0;$i<sizeof($jogos);$i++){
+		$timestamp = strtotime($jogos[$i]['jog_data_hora']);
+		$data = date("d/m/Y",$timestamp);			
+		$hora = date("H:i:s",$timestamp);
+						
+	?>
+
+
+						<tr class="palpites">
+							<td valign="top"><?php echo $data ;?><br><?php echo $hora;?></td>
+							<td valign="top" align="center"><img src="<?php echo URL_PORTAL.$jogos[$i]['escudo_casa'] ;?>"><br><?php echo utf8_encode($jogos[$i]['nome_casa']) ;?></td>
+							<td valign="top" align="center">
+								<?php
+								if($apostas[$i]){
+								?>
+									<input type="text" size="1" maxlength="2" name="placarcasa[<?php echo $jogos[$i]['jog_id'] ;?>]" value="<?php echo $apostas[$i]['apo_placar_casa'];?>"> X
+									<input type="text" size="1" maxlength="2" name="placarvisitante[<?php echo $jogos[$i]['jog_id'] ;?>]" value="<?php echo $apostas[$i]['apo_placar_visitante']?>">
+									<br>Aposta realizada
+									<input type="submit" value="Salvar Apostas">
+								<?php
+								}else{
+								?>
+									<input type="text" size="1" maxlength="2" name="placarcasa[<?php echo $jogos[$i]['jog_id'] ;?>]" value=""> X
+									<input type="text" size="1" maxlength="2" name="placarvisitante[<?php echo $jogos[$i]['jog_id'] ;?>]" value="">
+									<br><br>
+									<input type="submit" value="Salvar Apostas">
+								<?php
+								}
+								?>
+							</td>
+							<td valign="top" align="center"><img src="<?php echo URL_PORTAL.$jogos[$i]['escudo_visitante'] ;?>"><br><?php echo utf8_encode($jogos[$i]['nome_visitante']) ;?></td>
+						</tr>
+
+	<?php
+		}
+	?>
+		<tr>
+			<td colspan="4" align="center"><input type="button" class="btPalpite" value="SALVAR PALPITES" onClick="javascript:document.getElementById('form5').submit();"></td>
+		</tr>
+	</table>
+</form>

@@ -1,0 +1,212 @@
+        <section class="right">
+        
+        	<div class="borda-conteudo round">
+            
+            	<table cellpadding="0" cellspacing="0" class="tb-conteudo">
+                	<tr class="titulo-tb">
+                    	<td>
+                        <h2>CADASTRO DE ESCOLA</h2>
+                        
+                        </td>
+                        
+                    <tr>
+                    
+                    <tr>
+                    	<td>
+                        	<form class="form-cadastro" method="post" action="/escola/processaEscola/" id="frmCadEscola" enctype="multipart/form-data">
+                                                        
+                                <input type="hidden" name="esc_id" id="esc_id" value="<?php echo $esc_id?>" />
+                                <input type="hidden" name="esc_id" id="esc_id" value="<?php echo $arrEscola->id?>" />
+                                
+                                <label for="esc_nome">Nome:<br />
+                                <input type="text" name="esc_nome" id="esc_nome" class="validate[required] input-form round" value="<?php echo $arrEscola->nome?>" /></label>
+                            
+                                <label for="esc_endereco">Endere&ccedil;o:<br />
+                                <input type="text" name="esc_endereco" id="esc_endereco" class="validate[required] input-form round" value="<?php echo $arrEscola->endereco?>" /></label>
+                            
+                                <label for="esc_cidade" class="campo-menor">Cidade:<br />
+                                <input type="text" name="esc_cidade" id="esc_cidade" class="validate[required] input-form round" value="<?php echo $arrEscola->cidade?>" /></label>
+                            
+                                <label for="esc_estado" class="campo-menor no-margin-rigth">Estado:<br />
+                                <select type="text" name="esc_estado" id="esc_estado" class="validate[required] input-form round">
+                                       <option value="">Selecione</option>
+                                       <option value="AC"<?php echo $arrEscola->estado == 'AC'? 'selected="selected"' : '';?>>ACRE</option>
+                                       <option value="AL"<?php echo $arrEscola->estado == 'AL'? 'selected="selected"' : '';?>>ALAGOAS</option>
+                                       <option value="AP"<?php echo $arrEscola->estado == 'AP'? 'selected="selected"' : '';?>>AMAPA</option>
+                                       <option value="AM"<?php echo $arrEscola->estado == 'AM'? 'selected="selected"' : '';?>>AMAZONAS</option>
+                                       <option value="BA"<?php echo $arrEscola->estado == 'BA'? 'selected="selected"' : '';?>>BAHIA</option>
+                                       <option value="CE"<?php echo $arrEscola->estado == 'CE'? 'selected="selected"' : '';?>>CEARÁ</option>
+                                       <option value="DF"<?php echo $arrEscola->estado == 'DF'? 'selected="selected"' : '';?>>DISTRITO FEDERAL</option>
+                                       <option value="ES"<?php echo $arrEscola->estado == 'ES'? 'selected="selected"' : '';?>>ESPÍRITO SANTO</option>
+                                       <option value="GO"<?php echo $arrEscola->estado == 'GO'? 'selected="selected"' : '';?>>GOIAS</option>
+                                       <option value="MA"<?php echo $arrEscola->estado == 'MA'? 'selected="selected"' : '';?>>MARANHÃO</option>
+                                       <option value="MT"<?php echo $arrEscola->estado == 'MT'? 'selected="selected"' : '';?>>MATO GROSSO</option>
+                                       <option value="MS"<?php echo $arrEscola->estado == 'MS'? 'selected="selected"' : '';?>>MATO GROSSO DO SUL</option>
+                                       <option value="MG"<?php echo $arrEscola->estado == 'MG'? 'selected="selected"' : '';?>>MINAS GERAIS</option>
+                                       <option value="PA"<?php echo $arrEscola->estado == 'PA'? 'selected="selected"' : '';?>>PARÁ</option>
+                                       <option value="PB"<?php echo $arrEscola->estado == 'PB'? 'selected="selected"' : '';?>>PARAÍBA</option>
+                                       <option value="PR"<?php echo $arrEscola->estado == 'PR'? 'selected="selected"' : '';?>>PARANÁ</option>
+                                       <option value="PE"<?php echo $arrEscola->estado == 'PE'? 'selected="selected"' : '';?>>PERNAMBUCO</option>
+                                       <option value="PI"<?php echo $arrEscola->estado == 'PI'? 'selected="selected"' : '';?>>PIAUÍ</option>
+                                       <option value="RJ"<?php echo $arrEscola->estado == 'RJ'? 'selected="selected"' : '';?>>RIO DE JANEIRO</option>
+                                       <option value="RN"<?php echo $arrEscola->estado == 'RN'? 'selected="selected"' : '';?>>RIO GRANDE DO NORTE</option>
+                                       <option value="RS"<?php echo $arrEscola->estado == 'RS'? 'selected="selected"' : '';?>>RIO GRANDE DO SUL</option>
+                                       <option value="RO"<?php echo $arrEscola->estado == 'RO'? 'selected="selected"' : '';?>>RONDÔNIA</option>
+                                       <option value="RR"<?php echo $arrEscola->estado == 'RR'? 'selected="selected"' : '';?>>RORAIMA</option>
+                                       <option value="SC"<?php echo $arrEscola->estado == 'SC'? 'selected="selected"' : '';?>>SANTA CATARINA</option>
+                                       <option value="SP"<?php echo $arrEscola->estado == 'SP'? 'selected="selected"' : '';?>>SÃO PAULO</option>
+                                       <option value="SE"<?php echo $arrEscola->estado == 'SE'? 'selected="selected"' : '';?>>SERGIPE</option>
+                                       <option value="TO"<?php echo $arrEscola->estado == 'TO'? 'selected="selected"' : '';?>>TOCANTINS</option>
+                            	</select>
+                                </label>
+                            
+                                <label for="esc_cep" class="campo-menor">CEP:<br />
+                                <input type="text" name="esc_cep" id="esc_cep" class="validate[required] input-form round cepDefault" value="<?php echo $arrEscola->cep?>" /></label>
+                            
+                                <label for="esc_cnpj" class="campo-menor no-margin-rigth">CNPJ:<br />
+                                <input type="text" name="esc_cnpj" id="esc_cnpj" class="validate[required] input-form round" value="<?php echo $arrEscola->cnpj?>" /></label>
+                            
+                                <label for="esc_login" class="campo-menor">Login:<br />
+                                <input type="text" name="esc_login" id="esc_login" class="validate[required,custom[email]] input-form round" value="<?php echo $arrEscola->login?>" /></label>
+                            
+                                <label for="esc_senha" class="campo-menor no-margin-rigth">Senha:<br />
+                                <input type="password" name="esc_senha" id="esc_senha" class="validate[required] input-form round" value="<?php echo ($arrEscola->id > 0) ? '**********' : ''; ?>" /></label>
+                            
+                                <label for="data_acesso" class="campo-menor">Ano Inicial:<br />
+                                <select name="esc_anoInicial" id="esc_anoInicial" class="validate[required] input-form round ano">
+                                    <option value="">Selecione</option>
+                                <?php
+                                    if (count($arrSeries) > 0):
+                                        foreach($arrSeries as $series):
+                                            if ($series->id == $arrEscola->inicio):
+                                                $selected = ' selected="selected"';
+                                            else:
+                                                $selected = '';
+                                            endif;
+                                            if ($series->option == 1):
+                                                $pai = $series->pai;
+                                ?>
+                                                <optgroup label="<?php echo utf8_encode($series->nome);?>">
+                                                    
+                                <?php
+                                            else:
+                                                if ($series->pai == $pai):
+                                ?>
+                                                    <optgroup label="&nbsp;&nbsp;<?php echo utf8_encode($series->nome);?>">
+                                <?php
+                                                else:
+                                ?>
+                                                        <option value="<?php echo $series->id?>"<?php echo $selected;?>>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo utf8_encode($series->nome);?></option>
+                                <?php
+                                                endif;
+                                            endif;
+                                        endforeach;
+                                    endif;
+                                ?>
+                                </select>
+                                </label>
+                            
+                                <label for="esc_anoFinal" class="campo-menor no-margin-rigth">Ano Final:<br />
+                                <select name="esc_anoFinal" id="esc_anoFinal" class="validate[required] input-form round">
+                                    <option value="">Selecione</option>
+                                <?php
+                                    if (count($arrSeries) > 0):
+                                        foreach($arrSeries as $series):
+                                            if ($series->id == $arrEscola->inicio):
+                                                $selected = ' selected="selected"';
+                                            else:
+                                                $selected = '';
+                                            endif;
+                                            if ($series->option == 1):
+                                                $pai = $series->pai;
+                                ?>
+                                                <optgroup label="<?php echo utf8_encode($series->nome);?>">
+                                                    
+                                <?php
+                                            else:
+                                                if ($series->pai == $pai):
+                                ?>
+                                                    <optgroup label="&nbsp;&nbsp;<?php echo utf8_encode($series->nome);?>">
+                                <?php
+                                                else:
+                                ?>
+                                                        <option value="<?php echo $series->id?>"<?php echo $selected;?>>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo utf8_encode($series->nome);?></option>
+                                <?php
+                                                endif;
+                                            endif;
+                                        endforeach;
+                                    endif;
+                                ?>
+                                </select>
+                                </label>
+                            
+                                <label for="esc_zona" class="campo-menor">Zona:<br />
+                                <input type="radio" name="esc_zona" id="esc_zona1"<?php echo ($arrEscola->zona == 1 || $arrEscola->zona == '0' || $arrEscola->zona == '') ? ' checked="checked"' : '' ;?> class="validate[required]" value="1" /> Urbana
+                                <input type="radio" name="esc_zona" id="esc_zona0"<?php echo $arrEscola->zona == 2 ? ' checked="checked"' : '';?> class="validate[required]" value="2" /> Rural
+                                </label>
+                            
+                                <label for="esc_sistemaEnsino" class="campo-menor no-margin-rigth">Sistema de Ensino:<br />
+                                <input type="radio" name="esc_sistemaEnsino" id="esc_sistemaEnsino1"<?php echo ($arrEscola->esc_sistemaEnsino == 1 || $arrEscola->esc_sistemaEnsino == '') ? ' checked="checked"' : '' ;?> class="validate[required]" value="1" /> Seriado
+                                <input type="radio" name="esc_sistemaEnsino" id="esc_sistemaEnsino0"<?php echo $arrEscola->esc_sistemaEnsino == 2 ? ' checked="checked"' : '';?> class="validate[required]" value="2" /> Anual
+                                </label>
+                                
+                                <label for="esc_laboratorio" class="campo-menor">Possui Laborat&oacute;rios:<br />
+                                <input type="radio" name="esc_laboratorio" id="esc_laboratorio1"<?php echo ($arrEscola->laboratorio == 1 || $arrEscola->laboratorio == '') ? ' checked="checked"' : '' ;?> class="validate[required]" value="1" /> Sim
+                                <input type="radio" name="esc_laboratorio" id="esc_laboratorio0"<?php echo $arrEscola->laboratorio == 0 ? ' checked="checked"' : '';?> class="validate[required]" value="0" /> Não
+                                </label>
+                            
+                                <label for="esc_qtdPc" class="campo-menor no-margin-rigth">Qtd PC´s:<br />
+                                <input type="text" name="esc_qtdPc" id="esc_qtdPc" class="validate[required] input-form round numeric" value="<?php echo $arrEscola->qtdPc?>" />
+                                </label>
+                            
+                                <label for="esc_pcSecretaria" class="campo-menor">Possui PC na Secret&aacute;ria:<br />
+                                <input type="radio" name="esc_pcSecretaria" id="esc_pcSecretaria1"<?php echo ($arrEscola->pcSecretaria == 1 || $arrEscola->pcSecretaria == '') ? ' checked="checked"' : '' ;?> class="validate[required]" value="1" /> Sim
+                                <input type="radio" name="esc_pcSecretaria" id="esc_pcSecretaria0"<?php echo $arrEscola->pcSecretaria == 0 ? ' checked="checked"' : '';?> class="validate[required]" value="0" /> Não
+                                </label>
+                            
+                                <label for="esc_internet1" class="campo-menor no-margin-rigth">Possui Internet?:<br />
+                                <input type="radio" name="esc_internet" id="esc_internet1"<?php echo ($arrEscola->internet == 1 || $arrEscola->internet == '') ? ' checked="checked"' : '' ;?> class="validate[required]" value="1" /> Sim
+                                <input type="radio" name="esc_internet" id="esc_internet0"<?php echo $arrEscola->internet == 0 ? ' checked="checked"' : '';?> class="validate[required]" value="0" /> Não
+                                </label>
+                                
+                                <label for="ativo1">Ativa:<br />
+                                    <input type="radio" name="ativo" id="ativo1"<?php echo ($arrEscola->ativo == 1 || $arrEscola->ativo == '') ? ' checked="checked"' : '' ;?> class="validate[required]" value="1" /> Sim
+                                    <input type="radio" name="ativo" id="ativo0"<?php echo $arrEscola->ativo == 0 ? ' checked="checked"' : '';?> class="validate[required]" value="0" /> Não
+                                </label>
+                            
+                                <label for="esc_diretor" class="campo-menor">Diretor:<br />
+                                <input type="text" name="esc_diretor" id="esc_diretor" class="validate[required] input-form round" value="<?php echo $arrEscola->diretor?>" />
+                                </label>
+                            
+                                <label for="esc_inep" class="campo-menor no-margin-rigth">INEP:<br />
+                                <input type="text" name="esc_inep" id="esc_inep" class="validate[required] validate[required] input-form round" value="<?php echo $arrEscola->inep?>" />
+                                </label>
+                            
+                                <label for="esc_foto" class="campo-menor">Foto:<br />
+                                <input type="file" name="esc_foto" id="esc_foto" class="input-form file round" value="" />
+                                <?php
+                                    $caminho = 'templates/'.TEMPLATE.'/escolas/';
+                                    if (file_exists(CAMINHO_PORTAL . $caminho.$arrEscola->foto)):
+                                    echo '<img src="'.URL_PORTAL.$caminho.$arrEscola->foto.'" />';
+                                    endif;
+                                 
+                                 ?>
+                                </label>
+                                
+                                <label> <input type="submit" value="ENVIAR" class="bt-enviar round " /></label>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    
+                
+                </table>
+                
+                
+            
+            <br clear="all" />
+            </div>
+        </section>
+        
+        <script type="text/javascript" src="<?=URL_PORTAL."templates/" . TEMPLATE . "/"?>js/actionsEscola.js"></script>

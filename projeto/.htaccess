@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /fuctura/academia/projeto/
+RewriteRule . index.php

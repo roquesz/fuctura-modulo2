@@ -1,0 +1,294 @@
+        <section class="right">
+        
+        	<div class="borda-conteudo round">
+            
+            	<table cellpadding="0" cellspacing="0" class="tb-conteudo">
+                	<tr class="titulo-tb">
+                    	<td>
+                            <h2>Matrículas de <ins><?php echo $ano?></ins></h2>                        
+                        </td>
+                        
+                    <tr>
+                    
+                    <tr>
+                    	<td>
+                        	<form class="form-cadastro" method="post" action="/usuario/processaUsuario/" id="frmCadEscola">
+                                
+                                <label for="mat_ano" class="campo-menor">Ano:<br />
+                                    <input type="text" name="mat_ano" id="mat_ano" class="validate[required] input-form round numeric" value="<?=$ano?>" />
+                                </label>
+                                
+                                <label for="mat_ser_id" class="campo-menor">Série:<br />
+                                    <select type="text" name="mat_ser_id" id="mat_ser_id" class="validate[required] input-form round">
+                                           <option value="">Selecione</option>
+                                           <?php
+                                                if (count($arrSeries) > 0):
+                                                    foreach($arrSeries as $series):
+                                                        if ($series->id == $arrEscola->inicio):
+                                                            $selected = ' selected="selected"';
+                                                        else:
+                                                            $selected = '';
+                                                        endif;
+                                                        if ($series->option == 1):
+                                                            $pai = $series->pai;
+                                            ?>
+                                                            <optgroup label="<?php echo utf8_encode($series->nome);?>">
+                                                                
+                                            <?php
+                                                        else:
+                                                            if ($series->pai == $pai):
+                                            ?>
+                                                                <optgroup label="&nbsp;&nbsp;<?php echo utf8_encode($series->nome);?>">
+                                            <?php
+                                                            else:
+                                            ?>
+                                                                    <option value="<?php echo $series->id?>"<?php echo $selected;?>>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo utf8_encode($series->nome);?></option>
+                                            <?php
+                                                            endif;
+                                                        endif;
+                                                    endforeach;
+                                                endif;
+                                           ?>
+                                    </select>
+                                </label>
+                            
+                                <label for="mat_tur_id" class="campo-menor">Turma:<br />
+                                    <select type="text" name="mat_tur_id" id="mat_tur_id" class="validate[required] input-form round" disabled="disabled">
+                                           <option value="">Selecione</option>
+                                           <?php
+                                                if (count($arrTurma) > 0):
+                                                    foreach($arrTurma as $arrTurma):
+                                            ?>
+                                                                    <option value="<?php echo $arrTurma->id?>"<?php echo $selected;?>><?php echo utf8_encode($arrTurma->nome);?></option>
+                                            <?php
+                                                    endforeach;
+                                                endif;
+                                           ?>
+                                    </select>
+                                </label>
+                            
+                            
+                                <label for="mat_turno_id" class="campo-menor">Turno:<br />
+                                    <select type="text" name="mat_turno_id" id="mat_turno_id" class="validate[required] input-form round" disabled="disabled">
+                                           <option value="">Selecione</option>
+                                           <?php
+                                                if (count($arrTurno) > 0):
+                                                    foreach($arrTurno as $arrTurno):
+                                            ?>
+                                                                    <option value="<?php echo $arrTurno->id?>"<?php echo $selected;?>><?php echo utf8_encode($arrTurno->nome);?></option>
+                                            <?php
+                                                    endforeach;
+                                                endif;
+                                           ?>
+                                    </select>
+                                </label>
+                                <label for="mat_alu_id" class="campo-menor">Aluno:<br />
+                                    <select type="text" name="mat_alu_id" id="mat_alu_id" class="validate[required] input-form round" disabled="disabled">
+                                           <option value="">Selecione</option>
+                                           <?php
+                                                if (count($arrAluno) > 0):
+                                                    foreach($arrAluno as $arrAluno):
+                                            ?>
+                                                                    <option value="<?php echo $arrAluno->id?>"<?php echo $selected;?>><?php echo utf8_encode($arrAluno->nome);?></option>
+                                            <?php
+                                                    endforeach;
+                                                endif;
+                                           ?>
+                                    </select>
+                                </label>
+                                <label> <input type="submit" value="ADICIONAR" id="enviar" class="bt-enviar round" disabled="disabled" /></label>
+                            
+                                <label for="mat_alu_id" class="campo-menor">Aluno:<br />
+                                    <table id="listaAulas" width="800">
+                                        <thead>
+                                    	<tr>
+                                        	<td colspan="7">
+                                            <br />
+                                            	<h2>Lista de Matrículas</h2>
+                                            <br />
+                                            </td>
+                                        </tr>
+                                        </thead>
+                                        <tr id="thead">
+                                            <td>Ano</td>
+                                            <td width="250">Aluno</td>
+                                            <td>Série</td>
+                                            <td>Turma</td>
+                                            <td>Turno</td>
+                                            <td>Ações</td>
+                                            <td>Status</td>
+                                        </tr>
+                                        <tbody id="listaGeralAula">
+                                            <?php
+                                                if (is_array($arrMatriculas)):
+                                                    //echo '<pre>';
+                                                    //print_r($arrMatriculas);
+                                                    //echo '</pre>';
+                                                    foreach($arrMatriculas as $arrMatriculas):
+                                            ?>
+                                            <tr id="box<?php echo $arrMatriculas->id;?>">
+                                                <td><?php echo $arrMatriculas->ano;?></td>
+                                                <td><?php echo $arrMatriculas->aluno;?></td>
+                                                <td><?php echo utf8_encode($arrMatriculas->serie);?></td>
+                                                <td><?php echo utf8_encode($arrMatriculas->turma);?></td>
+                                                <td><?php echo utf8_encode($arrMatriculas->turno);?></td>
+                                                <td align="center"><a hre="javascript:;" onclick="removeItem(<?php echo $arrMatriculas->id;?>)"><img src="<?=URL_PORTAL."templates/" . TEMPLATE . "/"?>img/bt-excluir-todos.png" /></a></td>
+                                                <td>
+                                                    <?php
+                                                        $status = $arrMatriculas->status;
+                                                    ?>
+                                                    <input type="radio" name="status<?php echo $arrMatriculas->id;?>" id="status<?php echo $arrMatriculas->id;?>0" class="status" ids="<?php echo $arrMatriculas->id;?>" value="0" <?php if ($arrMatriculas->status == 0) : echo 'checked="checked"'; endif;?> /> Em Curso
+                                                    <input type="radio" name="status<?php echo $arrMatriculas->id;?>" id="status<?php echo $arrMatriculas->id;?>1" class="status" ids="<?php echo $arrMatriculas->id;?>" value="1" <?php if ($arrMatriculas->status == 1) : echo 'checked="checked"'; endif;?> /> Aprovado
+                                                    <input type="radio" name="status<?php echo $arrMatriculas->id;?>" id="status<?php echo $arrMatriculas->id;?>2" class="status" ids="<?php echo $arrMatriculas->id;?>" value="2" <?php if ($arrMatriculas->status == 2) : echo 'checked="checked"'; endif;?> /> Reprovado
+                                                </td>
+                                            </tr>
+                                            <?php
+                                                    endforeach;
+                                                endif;
+                                            ?>          
+                                        </tbody>
+                                     </table>
+                                </label>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    
+                
+                </table>
+                
+                
+            
+            <br clear="all" />
+            </div>
+        </section>
+
+		<script type="text/javascript">
+			var ano = <?php echo $ano?>;
+			$(
+				function()
+				{
+					
+					$("#mat_ano").blur(
+						function()
+						{
+							location.href="/matriculas/add/"+$(this).val();
+						}
+					)
+					
+					$("#mat_ser_id").change(
+						function()
+						{
+							if ($(this).val() > 0){
+								$("#mat_tur_id").attr("disabled", false);
+							}
+						}
+					)
+					$("#mat_tur_id").change(
+						function()
+						{
+							if ($(this).val() > 0){
+								$("#mat_turno_id").attr("disabled", false);
+							}
+						}
+					)
+					$("#mat_turno_id").change(
+						function()
+						{
+							if ($(this).val() > 0){
+								$("#mat_alu_id").attr("disabled", false);
+							}
+						}
+					)
+					$("#mat_alu_id").change(
+						function()
+						{
+							if ($(this).val() > 0){
+								$("#enviar").attr("disabled", false);
+							}
+						}
+					)
+					$("#aul_ano").blur(
+						function()
+						{
+							if ($(this).val() != <?php echo $ano?>){
+								location.href="?ano="+$(this).val();
+							}
+						}
+					)
+                    
+                    $(".status").click(
+                        function()
+                        {
+                            $.ajax({
+									type: "POST",
+									url: "grava-status.php",
+									data: {id : $(this).attr("ids"), valor : $(this).val()}
+								}).done(function( msg ) {
+									
+								});
+                        }
+                    )
+                    
+					$("#frmCadEscola").submit(
+						function()
+						{
+							var e = $(this);
+							if($(".formError").length == 0){
+								$.ajax({
+									type: "POST",
+									url: "/matriculas/gravaMatricula/",
+									data: e.serialize()
+								}).done(function( msg ) {
+									if (msg == 'error'){
+										alert('Aula já cadastrada');
+									} else {
+										var html = '<tr id="box'+msg+'"><td>'+$("#mat_ano").val()+'</td>';
+										$("select").each(
+											function()
+											{
+												var campo = $(this).attr("id");
+												html += '<td>'+$("#"+campo+" :selected").text()+'</td>'+"\n";
+											}
+										)
+										html += '<td align="center"><a hre="javascript:;" onclick="removeItem('+msg+')"><img src="imagens/erro.png" /></a></td>'+"\n";
+										html += '<td align="center"><input type="radio" name="status'+msg+'" id="status'+msg+'0" value="0" checked="checked" /> Em Curso<input type="radio" name="status'+msg+'" id="status'+msg+'1" value="1" /> Aprovado<input type="radio" name="status'+msg+'" id="status'+msg+'2" value="2" /> Reprovado</td>'+"\n";
+                                        html += '</tr>'+"\n";
+										$("#listaGeralAula").append(html);
+										document.getElementById('frmCadEscola').reset();
+										$("select").each(
+											function(i)
+											{
+												if (i > 0){
+													$(this).attr("disabled", true);
+												}
+											}
+										)
+										$("#aul_ano").val(ano);
+									}
+								});
+							};
+                            return false;
+						}
+					)
+				}
+			)
+			
+			function removeItem(id)
+			{
+				$.ajax({
+					type: "POST",
+					url: "/matriculas/removeMatricula/",
+					data: "id="+id
+				}).done(function( msg ) {
+					$("#box"+id).slideUp(
+						function()
+						{
+							$(this).remove();
+						}
+					)
+				});
+			}
+			
+		</script>

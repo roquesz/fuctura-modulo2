@@ -1,0 +1,120 @@
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		$(".participar").click(function(){
+			
+			<?php
+				if (!isset($_SESSION['usuario']['id'])){
+					echo "location.href='".URL_PORTAL."usuario/login/'";
+				}
+			?>
+			
+			var id = $(this).attr("rel");
+			var dados = 'id='+id;
+			$.ajax({
+				type: "POST",
+				url: "<?php echo URL_PORTAL?>bolao/participar/",
+				data: dados,
+				dataType: "xml",
+				success: function(xml){	
+					
+					var dataArray  = xml.getElementsByTagName("mensagem");				
+					
+					for(var i = 0 ; i < dataArray.length ; i++) {
+						var item = dataArray[i];		 
+						var msg = item.getElementsByTagName("msg")[0].firstChild.nodeValue;
+						
+					}
+					
+					if(msg == 'true'){
+						$("#bolao"+id).addClass('remover');
+						$("#bolao"+id).removeClass('participar');
+						$("#bolao"+id).html('Sair do Bol&atilde;o');
+						$("#apostar"+id).show();
+					}else{
+						alert('Erro ao participar do bolao!');				
+					}
+				}, 
+				error: function(){
+					alert("Ocorreu um erro no ajax");
+				}
+			});	
+
+		})
+		
+		$(".remover").click(function(){
+			
+			var id = $(this).attr("rel");
+			var dados = 'id='+id;
+			$.ajax({
+				type: "POST",
+				url: "<?php echo URL_PORTAL?>bolao/remover/",
+				data: dados,
+				dataType: "xml",
+				success: function(xml){	
+					
+					var dataArray  = xml.getElementsByTagName("mensagem");				
+					
+					for(var i = 0 ; i < dataArray.length ; i++) {
+						var item = dataArray[i];		 
+						var msg = item.getElementsByTagName("msg")[0].firstChild.nodeValue;
+						
+					}
+					
+					if(msg == 'true'){
+						$("#bolao"+id).addClass('participar');
+						$("#bolao"+id).removeClass('remover');
+						$("#bolao"+id).html('Participar');
+						$("#apostar"+id).hide();
+					}else{
+						alert('Erro ao sair do bolao!');				
+					}
+				}, 
+				error: function(){
+					alert("Ocorreu um erro no ajax");
+				}
+			});	
+
+			
+		});
+	})
+	
+</script>
+
+<h1>Lista de Bol&otilde;es</h1>
+<form id="form5" action="" method="post">	
+		
+		<?php
+		if($resultOther != false){
+			for($x = 0; $x < count($resultOther); $x++){
+		?>
+				
+		<div class="lista">
+		
+			<div class="descricaoLista">
+				<?php echo utf8_encode($resultOther[$x]['bol_nome'])?>
+				<br />
+				<a href="javascript:;" class="listBolao">Ver Descri&ccedil;&atilde;o</a>
+				<div class="descricaoBolao">
+					<?php echo utf8_encode($resultOther[$x]['bol_descricao'])?>
+				</div>
+			</div>
+			
+			<div class="acoesLista">
+			
+				<a href="javascript:;" class="participar" id="bolao<?php echo $resultOther[$x]['bol_id']?>" rel="<?php echo $resultOther[$x]['bol_id']?>">Participar</a>
+				 | 
+				<a id="apostar<?php echo $resultOther[$x]['bol_id']?>" style=" display: none" href="<?php echo URL_PORTAL?>bolao/apostar/<?php echo $resultOther[$x]['bol_id']?>">Apostar</a>
+			</div>
+			
+		</div>
+		
+		<br clear="all" />
+		
+		<?php
+			}
+		}
+		?>
+		
+</form>

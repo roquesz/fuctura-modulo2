@@ -1,0 +1,62 @@
+        <section class="right">
+        
+        	<div class="borda-conteudo round">
+            
+            	<table cellpadding="0" cellspacing="0" class="tb-conteudo">
+                	<tr class="titulo-tb">
+                    	<td>
+                        <h2>CADASTRO DE PATRIMÔNIO</h2>
+                        
+                        </td>
+                        
+                    <tr>
+                    
+                    <tr>
+                    	<td>
+                        	<form class="form-cadastro" method="post" action="/patrimonial/processaPatrimonio/" id="frmCadPatrimonio">
+                                                        
+                                <input type="hidden" name="pat_id" id="pat_id" value="<?php echo $pat_id?>" /></label>
+                            
+                                <label for="pat_descricao">Descrição:<br />
+                                <input type="text" name="pat_descricao" id="pat_descricao" class="validate[required] input-form round" value="<?php echo $pat_descricao?>" /></label>
+                                
+                                <label for="pat_qtd" class="campo-menor">Quantidade:<br />
+                                <input type="text" name="pat_qtd" id="pat_qtd" class="validate[required] input-form round numeric" value="<?php echo $pat_qtd?>" /></label>
+                                
+                                <label> <input type="submit" value="ENVIAR" class="bt-enviar round " /></label>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            <br clear="all" />
+            </div>
+        </section>
+        
+        <script type="text/javascript" src="<?=URL_PORTAL."templates/" . TEMPLATE . "/"?>js/actionsAluno.js"></script>
+        <script type="text/javascript">
+            
+            $(document).ready(function(){
+                
+                $("#alu_data_origem, #alu_nascimento").datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    nextText: 'Próximo',
+                    prevText: 'Anterior',
+                    changeMonth: true,
+                    changeYear: true,
+                    maxDate: 0
+                });
+                
+                $('#alu_cep').blur(function(){
+                    var cep = $(this).val();
+                    getEndereco(cep,'alu_endereco','alu_bairro','alu_cidade','alu_estado');
+                    $("#alu_numero").focus(); 
+                });
+                
+                
+                
+            });
+            
+            
+        </script>
+
