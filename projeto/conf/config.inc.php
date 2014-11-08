@@ -17,10 +17,11 @@
 * @version [Versão atual do arquivo]
 * @since [Arquivo existe desde: Data ou Versao]
 */
-
-$pasta = "/fuctura/academia/projeto";
+$pasta = getcwd();
+$pasta = str_replace("\\", "/", $pasta);
+$pasta = str_replace($_SERVER['DOCUMENT_ROOT'], "", $pasta);
 define("CAMINHO_PORTAL",$_SERVER['DOCUMENT_ROOT'].$pasta.'/');
-define("URL_PORTAL", "http://" . $_SERVER['SERVER_NAME'] . "/fuctura/academia/projeto/");
+define("URL_PORTAL", "http://" . $_SERVER['SERVER_NAME'] .$pasta.'/');
 
 define("PASTA_VIEW", "view/");
 
