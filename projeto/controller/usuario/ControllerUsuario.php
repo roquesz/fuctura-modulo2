@@ -40,12 +40,14 @@ class ControllerUsuario extends Controller
 	public function soma($parametros)
 	{
 		$view = new View();
-		$resultado = $parametros[0] + $parametros[1];
-		$array = array();
-		$array['somatorio'] = $resultado;
-		$view->data = $array;
-		$view->carregar('usuario/login.html');
-		$view->mostrar();
+        $valor1 = $parametros[0]; // Primeiro parâmetro enviado na url depois do método do controlador
+		$valor2 = $parametros[1]; // segundo parâmetro enviado na url depois do método do controlador
+        $resultado = $valor1 + $valor2; // Resultado da operação
+		$array = array(); // Array criado para ser enviado para a View
+		$array['somatorio'] = $resultado; // Incluir no array com a cheve 'somatorio' - resultado da soma
+		$view->data = $array; // Adicionando ao atributo data do controller View o array que será enviado para a View
+		$view->carregar('usuario/somatorio.html'); // Carrega o arquivo a exibido no browser
+		$view->mostrar(); // Excreve na tela o arquivo carregado
 	}
 	
 	public function login($parametros = null)
