@@ -16,3 +16,31 @@ Candidatos
    - Comprovante de inscrição
 
 Prova online
+
+Controladores:
+ - CandidadosController
+   - acaoPadrao
+   - uploadFoto
+   - situacaoConcurso
+   - comprovanteInscricao
+   - boletoPgto
+   - inscricao
+   - cadastro
+   - alteracao
+   - login
+   - cancelarInscricao
+
+ - ConcursosController
+   - listar
+   - detalhe
+
+ - AdminController
+   - login
+   - listarConcursos
+   - cadastrarConcursos
+   - alterarConcurso
+   - uploadDocumento
+   - listarTipoDocumento
+   - cadastrarTipoDocumento
+   - alterarTipoDocumento
+   - excluirTipoDocumento

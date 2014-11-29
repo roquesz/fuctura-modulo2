@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * [Descrição do arquivo].
 *
@@ -18,6 +18,7 @@
 * @since [Arquivo existe desde: Data ou Versao]
 */
 session_start();
+error_reporting(0);
 include("conf/config.inc.php");
 //exit($_SERVER["REDIRECT_URL"]);
 $url = str_replace($pasta, '', $_SERVER["REDIRECT_URL"]);

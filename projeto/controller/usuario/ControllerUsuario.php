@@ -39,6 +39,7 @@ class ControllerUsuario extends Controller
 
 	public function soma($parametros)
 	{
+		ControllerUsuario::seLogado();
 		$view = new View();
         $valor1 = $parametros[0]; // Primeiro parâmetro enviado na url depois do método do controlador
 		$valor2 = $parametros[1]; // segundo parâmetro enviado na url depois do método do controlador
@@ -58,7 +59,6 @@ class ControllerUsuario extends Controller
 			$view->tipo = 'int';
 			$data = array();
 			$data['concursos'] = 'lista de concursos';
-			$data['parametros'] = $parametros;
 			$view->data = $data;
 			$view->carregar("usuario/login.html");
 			$view->mostrar();
@@ -74,7 +74,7 @@ class ControllerUsuario extends Controller
         include_once ("model/usuario/ModelUsuario.php");
         $model = new ModelUsuario();
         
-		$execute = $model->pesquisarPorEmail($_POST['email']);
+		$execute = $model->pesquisarPorEmail($parametros[1]);
 		$data['result'] = 'ok';
 		if ($execute){
 			if (md5($_POST['senha']) != $execute[0]['usu_senha']){
@@ -90,6 +90,8 @@ class ControllerUsuario extends Controller
 				$_SESSION['usuario']['acesso'] = $execute[0]['ultimo_acesso'];
 				$_SESSION['usuarioLogado']    = TRUE;
 				$this->contratoHome();
+				$view->carregar("usuario/xmlLogin.html");
+				$view->mostrar();	
 			}
 		} else {
 			$data['result'] = false;
